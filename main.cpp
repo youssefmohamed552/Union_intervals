@@ -81,7 +81,7 @@ class SegmentTree{
         // std::cout << "in the left side where overall length is (" << right-left << ")\n" ;
         int res = insert(left_child, left, right);
         if(taken[root] <= 0) match[root] = match[left_child] + match[right_child];
-        if(res == (m_arr[root].second - m_arr[root].first)) taken[root]++;
+        // if(res == (m_arr[root].second - m_arr[root].first)) taken[root]++;
         return res;
       }
       // if it lies in the right
@@ -89,7 +89,7 @@ class SegmentTree{
         // std::cout << "in the right side where overall length is (" << right-left << ")\n";
         int res = insert(right_child, left, right);
         if(taken[root] <= 0) match[root] = match[left_child] + match[right_child];
-        if(res == (m_arr[root].second - m_arr[root].first)) taken[root]++;
+        // if(res == (m_arr[root].second - m_arr[root].first)) taken[root]++;
         return res;
       }
       // if it lies in both left and right 
@@ -98,7 +98,7 @@ class SegmentTree{
       int r_res = insert(right_child, m_arr[right_child].first, right);
       int res = l_res + r_res;
       if(taken[root] <= 0) match[root] = match[left_child] + match[right_child];
-      if(res == (m_arr[root].second - m_arr[root].first)) taken[root]++;
+      // if(res == (m_arr[root].second - m_arr[root].first)) taken[root]++;
       return res;
     }
 
@@ -117,7 +117,7 @@ class SegmentTree{
       // if it lies in the left
       if(right <= m_arr[left_child].second){
         // std::cout << "delete from the left\n";
-        if(right != left && taken[root] > 0)taken[root]--;
+        // if(right != left && taken[root] > 0)taken[root]--;
         del(left_child, left, right);
         if(taken[root] <= 0)match[root] = match[left_child] + match[right_child];
         return;
@@ -127,14 +127,14 @@ class SegmentTree{
         // std::cout << "delete from the right\n";
         del(right_child, left, right);
         if(taken[root] <= 0)match[root] = match[left_child] + match[right_child];
-        if(right != left && taken[root] > 0)taken[root]--;
+        // if(right != left && taken[root] > 0)taken[root]--;
         return;
       }
       // if it lies in both
       del(left_child, left, m_arr[left_child].second);
       del(right_child, m_arr[right_child].first, right);
       if(taken[root] <= 0)match[root] = match[left_child] + match[right_child];
-      if(right != left && taken[root] > 0)taken[root]--;
+      // if(right != left && taken[root] > 0)taken[root]--;
 
     }
 
